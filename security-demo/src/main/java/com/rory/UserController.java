@@ -11,6 +11,6 @@ public class UserController {
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public String query(){
-       return "sujiqnuan";
+       return "sujiqnuan love juan";
     }
 }

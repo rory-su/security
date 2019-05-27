@@ -19,7 +19,6 @@ public class UserController {
        list.add(new User());
        list.add(new User());
        list.add(new User());
-       list.add(new User());
        return list;
     }
 }

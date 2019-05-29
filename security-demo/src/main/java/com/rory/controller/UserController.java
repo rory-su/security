@@ -1,4 +1,4 @@
-package com.rory;
+package com.rory.controller;
 
 
 import com.rory.bean.User;
@@ -16,7 +16,6 @@ public class UserController {
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public List<User> query(){
        List<User> list= new ArrayList<User>();
-       list.add(new User());
        list.add(new User());
        list.add(new User());
        list.add(new User());

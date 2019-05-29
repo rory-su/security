@@ -1,5 +1,7 @@
 package com.rory;
 
+import com.rory.dao.UserMapper;
+import com.rory.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +36,14 @@ public class DemoApplicationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3));
 
+    }
+
+    @Autowired
+    UserMapper userMapper;
+     @Test
+     public void test(){
+         User user=userMapper.selectByUsername("admin");
+         System.out.println(user.getUsername());
     }
 
 

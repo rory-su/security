@@ -9,6 +9,11 @@
   <sql id="Base_Column_List" >
     id, username, pwdword
   </sql>
+
+  <select id="selectByUsername" resultType="com.rory.model.User">
+     select * from sys_user where username=#{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

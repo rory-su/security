@@ -10,10 +10,29 @@
     id, username, pwdword
   </sql>
 
+  <select id="queryUser" resultType="com.rory.model.User">
+    select * from sys_user
+    <where>
+       <if test="userQueryCondition.username!=null">
+           and username=#{userQueryCondition.username}
+       </if>
+    </where>
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByUsername" resultType="com.rory.model.User">
      select * from sys_user where username=#{username,jdbcType=VARCHAR}
   </select>
-
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

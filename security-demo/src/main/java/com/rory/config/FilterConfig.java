@@ -19,7 +19,7 @@ public class FilterConfig {
 
         List<String> urls=new ArrayList<String>();
         urls.add("/user");
-        urls.add("/test");
+        //urls.add("/test");
         registraion.setUrlPatterns(urls);
 
         registraion.addUrlPatterns("/*");

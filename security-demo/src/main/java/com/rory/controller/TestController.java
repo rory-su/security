@@ -1,9 +1,9 @@
 package com.rory.controller;
 
 
+import com.rory.exception.UserNotExistException;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,9 +17,9 @@ public class TestController {
     @ResponseBody
     public String test(HttpServletResponse response, HttpServletRequest request){
         String str = ReflectionToStringBuilder.toString(request);
-       // throw  new UserNotExistException("123");
+        throw  new UserNotExistException("123");
         //JSONArray array = JSONArray.fromObject(list);
-        System.out.print(str);
-        return str;
+       // System.out.print(str);
+        //return str;
     }
 }

@@ -4,6 +4,13 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+/*
+  执行的顺序 Filter ->Intecptor ->controllerAdvice-> Aspect ->controller
+  抛出异常返回的结果为其反序
+
+ 可以获取执行的方法 及传递的参数
+ 但是拿不到http请求的及响应的信息
+ */
 @Aspect
 @Component
 public class MyAspect {
@@ -22,25 +29,11 @@ public class MyAspect {
             System.out.println("参数是："+arg);
         }
         Object object=pjp.proceed();
+
         System.out.println("MyAspect  end.......");
+        //object 为返回的返回的数据 {"id":"1","username":"sujinquan","birthday":"12132312312"}
         return object;
     }
-
-    @Around("execution(* com.rory.DateUtil.*(..))")
-    public Object handleTestMethod(ProceedingJoinPoint pjp) throws Throwable {
-        //ProceedingJoinPoint 包含了拦截的方法的信息
-        System.out.println("MyAspect  start.....");
-        Object[] args=pjp.getArgs();
-        for (Object arg:args) {
-            System.out.println("参数是："+arg);
-        }
-        pjp.proceed();
-        System.out.println("MyAspect  end.......");
-        return null;
-    }
-
-
-
 
 
 }

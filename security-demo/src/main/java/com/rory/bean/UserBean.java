@@ -4,7 +4,9 @@ import com.rory.model.User;
 
 import java.util.Date;
 
+
 public class UserBean extends User {
+
     private Date birthday;
 
     public Date getBirthday() {

@@ -11,17 +11,24 @@ import java.util.Date;
 /*
    基于java的反射机制
    对action起作用 因此可以获取拦截的类名和方法名称
-   但是不能拦截到http请求的参数对象
+   拿到原始的http请求及响应的信息 和真正请求的方法的信息 但是拿不到真正执行的方法的参数的信息
  */
 @Component
 public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
         System.out.println(" MyInterceptor preHandle...");
-        System.out.println("拦截的类名："+((HandlerMethod)handler).getBean().getClass().getName());
-        System.out.println("拦截的方法名："+((HandlerMethod)handler).getMethod().getName());
+        String className=((HandlerMethod)handler).getBean().getClass().getName();//获取类名
+        String methodName=((HandlerMethod)handler).getMethod().getName();
+        System.out.println("拦截的类名："+className);
+        System.out.println("拦截的方法名："+methodName);
         httpServletRequest.setAttribute("startTime",new Date().getTime());
-        return true;
+        if(className.equals("com.rory.controller.UserController")){//只拦截com.rory.controller.UserController类里面的执行方法
+
+            return true;
+        }else{
+            return true;
+        }
     }
 
     @Override

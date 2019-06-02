@@ -2,14 +2,16 @@ package com.rory.controller;
 
 
 import com.rory.DateUtil;
-import com.rory.exception.UserNotExistException;
+import com.rory.bean.FileInfo;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Date;
 
 @Controller
 public class TestController {
@@ -25,4 +27,8 @@ public class TestController {
         System.out.println(str);
         return str;
     }
+
+
+
+
 }

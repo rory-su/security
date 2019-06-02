@@ -1,6 +1,7 @@
 package com.rory.controller;
 
 
+import com.rory.DateUtil;
 import com.rory.exception.UserNotExistException;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
@@ -16,10 +17,12 @@ public class TestController {
     @RequestMapping("/test")
     @ResponseBody
     public String test(HttpServletResponse response, HttpServletRequest request){
-        String str = ReflectionToStringBuilder.toString(request);
-        throw  new UserNotExistException("123");
+       //String str = ReflectionToStringBuilder.toString(request);
+       // throw  new UserNotExistException("123");
         //JSONArray array = JSONArray.fromObject(list);
-       // System.out.print(str);
-        //return str;
+       // System.out.print(str);\
+        String str= DateUtil.getNow();
+        System.out.println(str);
+        return str;
     }
 }

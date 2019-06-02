@@ -13,6 +13,7 @@
     <artifactId>security-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+
         <dependency>
             <groupId>com.rory</groupId>
             <artifactId>security-browser</artifactId>

@@ -6,14 +6,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.xml.crypto.Data;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -39,7 +42,7 @@ public class DemoApplicationTest {
                             .param("size","10")
                             .contentType(MediaType.APPLICATION_JSON_UTF8))
                             .andExpect(MockMvcResultMatchers.status().isOk()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         )
-                            .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value("3"))
+                            .andExpect(MockMvcResultMatchers.jsonPath(" $.length()").value("3"))
                             .andReturn().getResponse().getContentAsString();
                  System.out.println("getUserlist"+str);
     }
@@ -99,5 +102,18 @@ public class DemoApplicationTest {
           mockMvc.perform(delete("/user/2").contentType(MediaType.APPLICATION_JSON_UTF8))
                   .andExpect(MockMvcResultMatchers.status().isOk());
      }
+
+     //测试文件上传
+    @Test
+    public void uploadFileSuccess() throws Exception {
+         String str=mockMvc.perform(fileUpload("/file")
+         .file(new MockMultipartFile("file","test.txt","multipart/form-data","hello upload".getBytes("UTF-8"))))
+                 .andExpect(MockMvcResultMatchers.status().isOk())
+         .andReturn().getResponse().getContentAsString();
+         System.out.println("储存的文件的路径："+str);
+        //{"path":"E:\\ideaworkplace\\securityStudyWorkplace\\security\\security-demo\\src\\main\\java\\com\\rory\\controller\\1559465365835.txt"}
+    }
+
+
 
 }

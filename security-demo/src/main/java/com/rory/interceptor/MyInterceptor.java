@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+/*
+   基于java的反射机制
+   对action起作用 因此可以获取拦截的类名和方法名称
+   但是不能拦截到http请求的参数对象
+ */
 @Component
 public class MyInterceptor implements HandlerInterceptor {
     @Override
@@ -16,7 +21,7 @@ public class MyInterceptor implements HandlerInterceptor {
         System.out.println("拦截的类名："+((HandlerMethod)handler).getBean().getClass().getName());
         System.out.println("拦截的方法名："+((HandlerMethod)handler).getMethod().getName());
         httpServletRequest.setAttribute("startTime",new Date().getTime());
-        return false;
+        return true;
     }
 
     @Override

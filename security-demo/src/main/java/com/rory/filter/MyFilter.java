@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.Date;
 
 /*
-
+    拦截请求的url地址
+    不能获取得到请求后方法的执行方法和传递的参数
+    可以对所有url请求起作用
  */
 //@Component
 public class MyFilter implements Filter {

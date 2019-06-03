@@ -1,25 +1,48 @@
 package com.rory.config;
 
+import com.rory.authentication.MyAuthenticationSuccessHandler;
+import com.rory.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Autowired
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler;
+    @Autowired
+    public AuthenticationFailureHandler myAuthenticationFailHandler;
+    @Autowired
+    public SecurityProperties securityProperties;
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //http.httpBasic()
 
         http.formLogin()
+            .loginPage("/authentication/require")
+             .loginProcessingUrl("/authentication/form")
+             .successHandler(myAuthenticationSuccessHandler) //成功处理器
+             .failureHandler(myAuthenticationFailHandler)   //失败处理器
+            // .failureForwardUrl("/authentication/require")
             .and()
             .authorizeRequests()
-             .antMatchers("/v2/api-docs", "/configuration/ui",
-              "/swagger-resources", "/configuration/security",
-              "/" +
-                      "  ", "/webjars/**","/swagger-resources/configuration/ui",
-             "/swagge‌​r-ui.html").permitAll()
+            .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage()).permitAll()
             .anyRequest()
-            .authenticated();
+            .authenticated()
+            .and()
+            .csrf().disable();
     }
 }

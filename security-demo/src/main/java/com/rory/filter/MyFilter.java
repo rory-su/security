@@ -1,14 +1,14 @@
 package com.rory.filter;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Date;
 
-
 /*
-
+    拿到原始的http请求及响应信息 拿不到真正请求的方法的信息
+    不能获取得到请求后方法的执行方法和传递的参数
+    可以对所有url请求起作用
  */
 //@Component
 public class MyFilter implements Filter {

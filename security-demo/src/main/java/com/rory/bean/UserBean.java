@@ -1,10 +1,9 @@
 package com.rory.bean;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.rory.model.User;
-
 import javax.validation.constraints.Past;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class UserBean extends User {
 

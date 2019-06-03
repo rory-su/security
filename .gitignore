@@ -1,1 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
+/security/security.iml
+/security-app/security-app.iml
+/security-browser/security-browser.iml
+/security-core/security-core.iml
+/security-demo/security-demo.iml
+/security-core/target/
+/security-browser/target/
+/security-demo/target/
+/security/.idea/

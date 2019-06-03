@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-//@Configuration
+@Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -16,7 +16,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
              .antMatchers("/v2/api-docs", "/configuration/ui",
               "/swagger-resources", "/configuration/security",
-              "/swagger-ui.html", "/webjars/**","/swagger-resources/configuration/ui",
+              "/" +
+                      "  ", "/webjars/**","/swagger-resources/configuration/ui",
              "/swagge‌​r-ui.html").permitAll()
             .anyRequest()
             .authenticated();

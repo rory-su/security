@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Configuration
+//@Configuration
 public class FilterConfig {
 
     @Bean
@@ -18,11 +18,10 @@ public class FilterConfig {
         registraion.setFilter(new MyFilter());
 
         List<String> urls=new ArrayList<String>();
-        urls.add("/user");
-        urls.add("/test");
+        urls.add("/user/*");
+        //urls.add("/test");
         registraion.setUrlPatterns(urls);
-
-        registraion.addUrlPatterns("/*");
+        //registraion.addUrlPatterns("/*");
         registraion.addInitParameter("exclusions", "/*.js,/*.gif,/*.jpg,/*.png,/*.css,/*.ico");
         registraion.setDispatcherTypes(DispatcherType.REQUEST);
         registraion.setName("MyFilter");

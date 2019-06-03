@@ -25,6 +25,7 @@ public class TestController {
        // System.out.print(str);\
         String str= DateUtil.getNow();
         System.out.println(str);
+        System.out.println("hello world");
         return str;
     }
 

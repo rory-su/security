@@ -1,6 +1,7 @@
 package com.rory.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rory.bean.SimpleResponse;
 import com.rory.properties.LoginType;
 import com.rory.properties.SecurityProperties;
 import org.slf4j.Logger;
@@ -35,7 +36,8 @@ public class MyAuthenticationFailHandler extends SimpleUrlAuthenticationFailureH
      if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
          response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
          response.setContentType("application/json;charset=UTF-8");
-         response.getWriter().write(objectMapper.writeValueAsString(e));
+         //response.getWriter().write(objectMapper.writeValueAsString(e));//包含栈的错误信息
+         response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(e.getMessage())));
      }else{
          super.onAuthenticationFailure(request,response,e);
      }

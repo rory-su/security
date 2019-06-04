@@ -1,20 +1,14 @@
 package com.rory.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.rory.validator.MyConstraint;
-import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.Past;
-
-public class User {
+public class Sys_User {
 
     public interface  UserSimpleView{};
     public interface  UserDetailView extends  UserSimpleView{};
 
     private Integer id;
-    @MyConstraint(message = "这是一个测试的校验器")
     private String username;
-    @NotBlank(message ="密码不能为空")
     private String pwdword;
 
     @JsonView(UserSimpleView.class)

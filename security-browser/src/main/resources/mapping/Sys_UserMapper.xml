@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rory.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.rory.model.User" >
+<mapper namespace="com.rory.dao.Sys_UserMapper" >
+  <resultMap id="BaseResultMap" type="com.rory.model.Sys_User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="pwdword" property="pwdword" jdbcType="VARCHAR" />
@@ -9,30 +9,6 @@
   <sql id="Base_Column_List" >
     id, username, pwdword
   </sql>
-
-  <select id="queryUser" resultType="com.rory.model.User">
-    select * from sys_user
-    <where>
-       <if test="userQueryCondition.username!=null">
-           and username=#{userQueryCondition.username}
-       </if>
-    </where>
-  </select>
-
-
-
-
-
-
-
-
-
-
-
-
-  <select id="selectByUsername" resultType="com.rory.model.User">
-     select * from sys_user where username=#{username,jdbcType=VARCHAR}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -43,13 +19,13 @@
     delete from sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.rory.model.User" >
+  <insert id="insert" parameterType="com.rory.model.Sys_User" >
     insert into sys_user (id, username, pwdword
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{pwdword,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.rory.model.User" >
+  <insert id="insertSelective" parameterType="com.rory.model.Sys_User" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -74,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.rory.model.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.rory.model.Sys_User" >
     update sys_user
     <set >
       <if test="username != null" >
@@ -86,7 +62,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.rory.model.User" >
+  <update id="updateByPrimaryKey" parameterType="com.rory.model.Sys_User" >
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
       pwdword = #{pwdword,jdbcType=VARCHAR}

@@ -18,7 +18,6 @@ public class MyUserDetailsService implements UserDetailsService {
    @Autowired
     PasswordEncoder passwordEncoder;
 
-
     @Override
     public UserDetails loadUserByUsername(String username)  {
         logger.info("登录用户名：" +username);

@@ -31,13 +31,16 @@ public class SercurityController {
 
    @Autowired
    private SecurityProperties securityProperties;
-    /*
+
+   /*
      当需要身份认证 跳转到这里
     */
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         SavedRequest savedRequest=requestCache.getRequest(request,response);
+
         if(savedRequest!=null){
             String targetUrl=savedRequest.getRedirectUrl();
             logger.info("引发跳转的请求是:"+targetUrl);

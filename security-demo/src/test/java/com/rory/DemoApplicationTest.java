@@ -1,5 +1,6 @@
 package com.rory;
 import com.jayway.jsonpath.JsonPath;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,9 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -102,7 +105,6 @@ public class DemoApplicationTest {
           mockMvc.perform(delete("/user/2").contentType(MediaType.APPLICATION_JSON_UTF8))
                   .andExpect(MockMvcResultMatchers.status().isOk());
      }
-
      //测试文件上传
     @Test
     public void uploadFileSuccess() throws Exception {
@@ -112,6 +114,17 @@ public class DemoApplicationTest {
          .andReturn().getResponse().getContentAsString();
          System.out.println("储存的文件的路径："+str);
         //{"path":"E:\\ideaworkplace\\securityStudyWorkplace\\security\\security-demo\\src\\main\\java\\com\\rory\\controller\\1559465365835.txt"}
+    }
+
+
+    //测试list转字符串
+    @Test
+    public void ListToString(){
+         List<String> stringList=new ArrayList<String>();
+         stringList.add("/sujiqnuan/sss");
+         stringList.add("/zhanjuan/yy");
+         String str ="\""+StringUtils.join(stringList,"\",\"")+"\"";
+         System.out.println("dddddd:"+str);
     }
 
 

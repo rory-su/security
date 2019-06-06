@@ -40,7 +40,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         ValidateCodeFilter validateCodeFilter=new ValidateCodeFilter();
         validateCodeFilter.setAuthenticationFailureHandler(myAuthenticationFailHandler);
-
+        validateCodeFilter.setSecurityProperties(securityProperties);
+        validateCodeFilter.afterPropertiesSet();
         //http.httpBasic()
          http.addFilterBefore(validateCodeFilter,UsernamePasswordAuthenticationFilter.class)
              .formLogin()
@@ -48,7 +49,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
              .loginProcessingUrl("/authentication/form")
              .successHandler(myAuthenticationSuccessHandler) //成功处理器
              .failureHandler(myAuthenticationFailHandler)   //失败处理器
-             .failureForwardUrl("/loginPage.html")
+             //.failureForwardUrl("/loginPage.html")
              .and()
              .authorizeRequests()
              .antMatchers("/authentication/require",securityProperties.getBrowser().getLoginPage(), "/code/image" ).permitAll()
